@@ -1,0 +1,2 @@
+# logic
+tentang logic pemprograman
