@@ -1,0 +1,183 @@
+///////////pertama
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soal2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {   
+            // nilai acuan 2 dimensi
+            int max = 9;
+            // buat baris
+            for (int i = 0; i < max; i++)
+            {
+                // buat kolom
+                for (int j = 0; j < max; j++)
+                {
+                    // syarat-syaratnya
+                    if(i+j== (max-1))
+                        Console.Write(" * ");
+                    else
+                        Console.Write("  ");
+                }
+                Console.WriteLine();
+            }
+            Console.Read();
+        }
+    }
+}
+
+
+
+/////////////////kedua
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soal3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int max = 9;
+            for (int i = 0; i < max; i++) 
+            {
+                for(int j=0; j < max ; j++)
+                {
+                    if(i+j == (max-1))
+                        Console.Write(" * ");
+                    else if(i==j)
+                        Console.Write(" * ");
+                    else if (j == ((max-1)/2))
+                        Console.Write(" * ");
+                    else if (i == ((max-1)/2))
+                        Console.Write(" * ");
+                    else
+                        Console.Write("   ");
+
+                }
+                Console.WriteLine();
+            }
+            Console.Read();
+        }
+    }
+}
+
+
+
+
+//////////////ketiga
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soal3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int max = 9;
+            for (int i = 0; i < max; i++) 
+            {
+                for(int j=0; j < max ; j++)
+                {
+                    if(j <= i)
+                        Console.Write(" * ");
+                    else
+                        Console.Write("   ");
+
+                }
+                Console.WriteLine();
+            }
+            Console.Read();
+        }
+    }
+}
+
+
+
+
+
+////////////////keempat
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soal3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int max = 9;
+            for (int i = 0; i < max; i++) 
+            {
+                for(int j=0; j < max ; j++)
+                {
+                    if(i+j >= (max-1) && j<=i)
+                        Console.Write(" * ");
+                    else if(i+j <= (max-1) && j >= i)
+                        Console.Write(" * ");
+                    else
+                        Console.Write("   ");
+
+                }
+                Console.WriteLine();
+            }
+            Console.Read();
+        }
+    }
+}
+
+
+
+
+
+//////////kelima
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soal3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int max = 9;
+            for (int i = 0; i < max; i++) 
+            {
+                for(int j=0; j < max ; j++)
+                {
+                    if(i+j <= (max-1) && j<=i && i <= ((max-1)/2))
+                        Console.Write(" * ");
+                    else if(i+j >= (max-1) && j >= i && i >= ((max-1)/2))
+                        Console.Write(" * ");
+                    else
+                        Console.Write("   ");
+
+                }
+                Console.WriteLine();
+            }
+            Console.Read();
+        }
+    }
+}
+
+
+
