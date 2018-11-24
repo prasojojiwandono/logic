@@ -1,0 +1,417 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soal1
+{
+    class logic3
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("masukan angka:  ");
+            int input = 0;
+            int.TryParse(Console.ReadLine(), out input);//harus pake readline
+            Console.WriteLine("\n");
+            pr(input);
+            Console.WriteLine("\n");
+            Console.Read();
+        }
+        static void nampilin(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + "\t");
+            }
+        }
+        static void nampilin2(string[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+        static void nampilin3(string[] apakek)
+        {
+            for (int i = 0; i < apakek.Length; i++)
+            {
+                Console.Write(apakek[i] + "\t");
+            }
+        }
+        static void nampilin4(int[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+        static void soal1(int n)
+        {
+            int a = 1;// untuk dapat melakukan fibonaci syarat angka awal dibutuhkan, oleh karena itu disini ditetapkan angka awalnya = 1 
+            int[] soal01 = new int[n];// membuat array 1D 
+            for (int i = 0; i < n; i++)// melooping fibonaci
+            {
+                if (i > 1)// syarat I fibaonaci
+                    soal01[i] = soal01[i - 1] + soal01[i - 2];
+                else// syarat II fibonaci
+                    soal01[i] = a;
+            }
+            nampilin(soal01);
+        }
+        static void soal2(int n)
+        {
+            int a = 1; // nilai awalan
+            int[] soal02 = new int[n];// membuat array bertipe integer
+            for (int i = 0; i < n; i++)// looping array
+            {
+                if (i > 2) // syarat I ,  ini membutuhkan setidaknya 3 nilai yang telah diketahui
+                    soal02[i] = soal02[i - 1] + soal02[i - 2] + soal02[i - 3];
+                else // syarat II, in sebetulnya adalah nilai angka awal
+                    soal02[i] = a;
+            }
+            nampilin(soal02);//menampilkan nilai array
+        }
+        static void soal3(int n)
+        {
+            int a = 1; //. ini nilai angka awal
+            int tengah = (n - 1) / 2; // ini nilai angka tengah,( ada baiknya di simpan dalam bentuk variable)
+            int[] soal03 = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                if (i <= tengah)
+                {
+                    if (i > 1)
+                        soal03[i] = soal03[i - 1] + soal03[i - 2]; // baca soal1
+                    else
+                        soal03[i] = a; // baca soal1
+                }
+                else
+                    soal03[i] = soal03[(n - 1) - i]; // ini seperti fungsi mirror di autocad
+
+            }
+            nampilin(soal03);
+        }
+        static void soal4(int n)
+        {
+            int a = 1; // angka awal
+            int tengah = (n - 1) / 2; // ini angka tengah, lebih baik ditentukan terlebih dahulu
+            int[] soal04 = new int[n];// membuat array bertipe integer
+            for (int i = 0; i < n; i++)// looping array
+            {
+                if (i <= tengah)
+                {
+                    if (i > 2) // baca soal 2
+                        soal04[i] = soal04[i - 1] + soal04[i - 2] + soal04[i - 3];
+                    else // baca soal2
+                        soal04[i] = a;
+                }
+                else
+                    soal04[i] = soal04[(n - 1) - i];// ini fungsi untuk mirror
+
+            }
+            nampilin(soal04);//menampilkan nilai array
+        }
+        static void soal5(int n)
+        {//DISINI MULAI DIGUNAKAN LEBIH DARI SATU ARRAY
+
+            int tengah = (n - 1) / 2; //  seperti biasa menentukan nilai tengah 
+            int[] array5 = new int[n]; // BUAT ARRAY PERTAMA, SEPERTI SOAL4
+            int a = 1;
+            for (int i = 0; i < n; i++)
+            {
+                if (i <= tengah)
+                {
+                    if (i < 2)
+                        array5[i] = a;
+                    else
+                        array5[i] = array5[i - 1] + array5[i - 2];
+                }
+                else
+                    array5[i] = array5[(n - 1) - i];
+
+            }
+
+            string[,] array2d = new string[n, n];// BUAT ARRAY KE DUA, KALI INI ARRAY 2D
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (i > j && i + j < n - 1) // INI SYARAT BIAR MEMBENTUK SEGITIGA DI KANAN
+                        array2d[i, j] = " ";
+                    else
+                        array2d[i, j] = array5[j].ToString();// INI PENTING, ADA NILAI ARRAY PERTAMA YANG MASUK PADA ARRAY KEDUA
+                }
+
+            }
+            nampilin2(array2d);
+
+        }
+        static void soal6(int n)
+        {// INI JUGA MENGGUNAKAN DUA ARRAY
+            int tengah = (n - 1) / 2;
+            int a = 1;
+            int[] array6 = new int[n];// ARRAY PERTAMA
+            for (int i = 0; i < n; i++)
+            {
+                if (i < 2)
+                    array6[i] = a;
+                else
+                    array6[i] = array6[i - 1] + array6[i - 2];
+
+            }
+            string[,] array2d = new string[n, n];// array kedua
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (i > j && i + j < n - 1)// ini segitiga kanan
+                        array2d[i, j] = "D";
+                    else if (i + j < n - 1 && j > i)// ini segitiga atas
+                    {
+                        array2d[i, j] = "A";
+                    }
+                    else if (i + j > n - 1 && j > i)// ini segitiga kiri
+                    {
+                        array2d[i, j] = "B";
+                    }
+                    else if (i + j > n - 1 && i > j)// ini segitiga bawah
+                    {
+                        array2d[i, j] = "C";
+                    }
+                    else
+                        array2d[i, j] = array6[j].ToString();
+                }
+
+            }
+            nampilin2(array2d);
+        }
+        static void soal7(int n)
+        {// INI MENGGUNAKAN KONSEP EMPAT SEGITIGA DAN POLA FIBONACI
+            int tengah = (n - 1) / 2;
+            int a = 1;
+            int[] array7 = new int[n]; // ARRAY PERTAMA 
+            for (int i = 0; i < n; i++)
+            {
+                if (i <= tengah)
+                {
+                    if (i <= 1)
+                        array7[i] = a;
+                    else
+                        array7[i] = array7[i - 1] + array7[i - 2];
+                }
+                else
+                    array7[i] = array7[(n - 1) - i];//kaya di mirror
+            }
+            string[,] array2d = new string[n, n];// ARRAY KEDUA
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    //kondisi pertama
+                    if (i + j < n - 1 && j > i)//kondisi segitiga terbalik diatas
+                        array2d[i, j] = array7[i].ToString();// INI MEMAKAI i BUKAN MEMAKAI j ,coba temukan bedanya
+                    //kondisi kedua
+                    else if (i + j > n - 1 && i > j)//kondisi segitiga dibawah, sebenarnya kondisi pertama dan kedua bisa digabung
+                        array2d[i, j] = array7[i].ToString();// INI MEMAKAI i BUKAN MEMAKAI j ,coba temukan bedanya
+                    else
+                        array2d[i, j] = array7[j].ToString();// INI MEMAKAI j BUKAN MEMAKAI i ,coba temukan bedanya
+                }
+            }
+            nampilin2(array2d);
+        }
+        static void soal8(int n)
+        { // ini adalah bentuk yang hampir mirip dengan soal7, PENTING (BEDANYA ARRAY DISINI BERTIPE STRING)
+            int tengah = (n - 1) / 2;
+            string[] array8 = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                int rumus = i + 1;
+                if (i <= tengah)
+                {
+                    if (i % 2 == 0)
+                        array8[i] = rumus.ToString(); //  ingat fungsi .ToString() --> mengubah angka jadi string
+                    else
+                        array8[i] = " ";
+                }
+                else
+                    array8[i] = array8[(n - 1) - i];
+            }
+            string[,] array2d = new string[n, n]; //array kedua
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if ((i + j < n - 1 && j > i) || (i > j && i + j > n - 1))
+                    {
+                        array2d[i, j] = array8[i];
+                    }
+                    else
+                        array2d[i, j] = array8[j];
+                }
+            }
+            nampilin2(array2d);
+        }
+        static void soal9(int n)
+        {// PENTING, DISINI SAYA MEMAKAI TIGA ARRAY (INGAT KONSEP ARRAY DALAM ARRAY PADA SOAL5 , INI ADALAH PENURUNANNYA)
+            int tengah = (n - 1) / 2;
+            int a = 1;
+            int[] arint9 = new int[n]; //ARRAY PERTAMA BERTIPE INTEGER
+            for (int i = 0; i < n; i++)
+            {
+                if (i < 2)
+                    arint9[i] = a;
+                else
+                    arint9[i] = arint9[i - 1] + arint9[i - 2];
+            }
+            string[] array9 = new string[n];//ARRAY KEDUA BERTIPE STRING , NANTINYA ARRAY PERTAMA MASUK DALAM ARRAY KEDUA
+            for (int i = 0; i < n; i++)
+            {
+                if (i <= tengah)
+                {
+                    if (i % 2 == 0)
+                        array9[i] = arint9[i / 2].ToString();
+                    else
+                        array9[i] = " ";
+
+                }
+                else
+                    array9[i] = array9[(n - 1) - i];
+            }
+            string[,] array2d = new string[n, n];//ARRAY KETIGA BERTIPE STRING BERDIMENSI DUA, NANTINYA ARRAY KEDUA MASUK DALAM ARRAY KETIGA
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if ((i + j < n - 1 && j > i) || (i + j > n - 1 && i > j))
+                        array2d[i, j] = array9[i];
+                    else
+                        array2d[i, j] = array9[j];
+                }
+            }
+            nampilin2(array2d);
+        }
+        static void soal10(int n)
+        {// PADA SOAL INI MEMAKAI 4 ARRAY
+            int tengah = (n - 1) / 2;
+            int a = 1;
+            // ARRAY PERTAMA ADALAH ARRAY YANG BERISI HURUF ALFABET
+            string[] huruf = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+            int[] fibo = new int[n]; // ARRAY KEDUA ADALAH ARRAY SEPERTI SOAL3
+            for (int i = 0; i < n; i++)
+            {
+                if (i <= 1)
+                    fibo[i] = a;
+                else
+                    fibo[i] = fibo[i - 1] + fibo[i - 2];
+            }
+            string[] array1d = new string[n];// INI ADALAH ARRAY KETIGA, ARRAY KETIGA ADALAH GABUNGAN DARI ARRAY PERTAMA DAN ARRAY KEDUA
+            for (int i = 0; i < n; i++)
+            {
+                if (i <= tengah)
+                {
+                    if (i % 2 == 0)
+                        array1d[i] = fibo[i / 2].ToString();
+                    else
+                        array1d[i] = huruf[(i - 1) / 2];
+                }
+                else
+                    array1d[i] = array1d[(n - 1) - i];
+            }
+            string[,] array2d = new string[n, n];// INI ADALAH ARRAY KE EMPAT, YANG ISINYA MERUPAKAN ARRAY KE TIGA
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if ((i + j < n - 1 && j > i) || (i + j > n - 1 && i > j))
+                        array2d[i, j] = array1d[i];
+                    else
+                        array2d[i, j] = array1d[j];
+                }
+            }
+            nampilin2(array2d);
+        }
+        static void posttest(int n)
+        {
+            int n2 = 2 * n - 1;
+            int tengah = (n2 - 1) / 2;
+            int a = 1;
+            int[] array11 = new int[n2];
+            for (int i = 0; i < n2; i++)
+            {
+                if (i <= tengah)
+                {
+                    if (i <= 1)
+                        array11[i] = a;
+                    else
+                        array11[i] = array11[i - 1] + array11[i - 2];
+                }
+                else
+                    array11[i] = array11[(n2 - 1) - i];
+            }
+            string[,] arraypost = new string[n, n2];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n2; j++)
+                {
+                    if (i == j || i + j == n - 1 || i - j == -1 * (n - 1) || i + j == n2 - 1)
+                        arraypost[i, j] = array11[j].ToString();
+                    else
+                        arraypost[i, j] = " ";
+                }
+            }
+            nampilin2(arraypost);
+        }
+        static void pr(int n)
+        {
+            int ti = n - 1;
+            int aki = ti * 2;
+            int jum = aki + 1;
+            int awal= 1;
+            string[] huruf = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+            int[] fibo = new int[jum];
+            for (int i = 0; i < jum; i++)
+            {
+                if (i <= ti)
+                {
+                    if (i <= 1)
+                        fibo[i] = awal;
+                    else
+                        fibo[i] = fibo[i - 1] + fibo[i - 2];
+                }
+                else
+                    fibo[i] = fibo[(aki - i)];
+            }
+            string[] huruf2 = new string[jum];
+            for (int i = 0; i < jum; i++)
+            {
+                if (i <= ti)
+                    huruf2[i] = huruf[i];
+                else
+                    huruf2[i] = huruf[aki - i];
+            }
+            string[,] array2d = new string[n, jum];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < jum; j++)
+                {
+                    if (i == j || i + j == ti || i + j == aki || i - j == -ti)
+                        array2d[i, j] = fibo[j].ToString();
+                    else if (i == (n - 1) / 2)
+                        array2d[i, j] = huruf2[j];
+                    else
+                        array2d[i, j] = " ";
+                }
+            }
+            nampilin2(array2d);
+        }
+    }
+}
