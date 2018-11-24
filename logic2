@@ -1,0 +1,286 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace logic02
+{
+    class logic02
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("masukan angka : ");
+            int input = 0;
+            int.TryParse(Console.ReadLine(), out input);
+            Console.WriteLine("\n");
+            soalpost(input);
+            Console.Read();
+        }
+        
+        static void nampilin(string[,] iniarray)
+        {
+            for (int i = 0; i < iniarray.GetLength(0); i++)
+            {
+                for (int j = 0; j < iniarray.GetLength(1); j++)
+                {
+                    Console.Write(iniarray[i,j]+"\t");
+                }
+                Console.WriteLine("\n");
+            }
+        }
+        static void soal1(int n)
+        {
+            
+            int tengah = (n - 1) / 2;
+            string[,] soal01 = new string[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                int angka = 1;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i == j)
+                        soal01[i, j] = angka.ToString();// Tostring adalah method untuk mengkonversi kedalam string
+                    else
+                        soal01[i, j] = " ";
+                    angka += 2;
+                }
+            }
+            nampilin(soal01);
+        }
+        static void soal2(int n)
+        {
+            
+            int tengah = (n - 1) / 2;
+            string[,] soal02 = new string[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                int angka = 0;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i + j == (n - 1))
+                        soal02[i, j] = angka.ToString();
+                    else
+                        soal02[i, j] = " ";
+                    angka+=2;
+                }
+            }
+            nampilin(soal02);
+        }
+        static void soal3(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,] soal03 = new string[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                int angka0 = 0;
+                int angka1 = 1;
+                for (int j= 0; j < n; j++)
+                {
+                    if (i == j)
+                        soal03[i, j] = angka1.ToString();
+                    else if (i + j == n - 1)
+                        soal03[i, j] = angka0.ToString();
+                    else
+                        soal03[i, j] = " ";
+                    angka0 += 2;
+                    angka1 += 2;
+                }
+            }
+            nampilin(soal03);
+        }
+        static void soal4(int n)
+        {
+            int tengah = (n-1)/2;
+            string[,] soal04 = new string[n, n];
+            int angka1 = 1;
+            for (int i = 0; i < n; i++)
+            {
+                int angka0 = 0;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i == j || j == tengah)
+                        soal04[i, j] = angka1.ToString();
+                    else if (i + j == n - 1 || i == tengah)
+                        soal04[i, j] = angka0.ToString();
+                    else
+                        soal04[i, j] = " ";
+                    angka0 += 2;
+                }
+                angka1 += 2;
+            }
+            nampilin(soal04);
+        }
+        static void soal5(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,] soal05 = new string[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                int angka1=1;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i >= j)
+                        soal05[i, j] = angka1.ToString();
+                    else
+                        soal05[i, j] = " ";
+                    angka1 += 2;
+                }
+            }
+            nampilin(soal05);
+        }
+        static void soal6(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,] soal06 = new string[n, n];
+            int angka=16;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (i + j >= n - 1)
+                        soal06[i, j] = angka.ToString();
+                    else
+                        soal06[i, j] = " ";
+                }
+                angka -= 2;
+            }
+            nampilin(soal06);
+        }
+        static void soal7(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,] soal07 = new string[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                int angka16 = 16;
+                int angka1 = 1;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i + j <= n - 1 && j >= i)
+                    {
+                        if (i == j)
+                            soal07[i, j] = angka1.ToString();
+                        else if (i + j == n - 1)
+                            soal07[i, j] = angka16.ToString();
+                        else
+                            soal07[i, j] = "A";
+                    }
+                    else if (i >= j && i + j >= n - 1)
+                    {
+                        if (i == j)
+                            soal07[i, j] = angka1.ToString();
+                        else if (i + j == n - 1)
+                            soal07[i, j] = angka16.ToString();
+                        else
+                            soal07[i, j] = "B";
+                    }
+                    else
+                        soal07[i, j] = " ";
+                    angka1 += 2;
+                    angka16 -= 2;
+                }
+            }
+            nampilin(soal07);
+        }
+        static void soal8(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,]soal08=new string[n,n];
+            for (int i = 0; i < n; i++)
+            {
+                int angka1 = 1;
+                int angka16 = 16;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i >= j && i + j <= n - 1)
+                    {
+                        if (i == j)
+                            soal08[i, j] = angka1.ToString();
+                        else if (i + j == n - 1)
+                            soal08[i, j] = angka16.ToString();
+                        else
+                            soal08[i, j] = "A";
+                    }
+                    else if (i + j >= n - 1 && j >= i)
+                    {
+                        if (i == j)
+                            soal08[i, j] = angka1.ToString();
+                        else if (i + j == n - 1)
+                            soal08[i, j] = angka16.ToString();
+                        else
+                            soal08[i, j] = "B";
+                    }
+                    else
+                        soal08[i, j] = " ";
+                    angka1+=2;
+                    angka16-=2;
+                }
+            }
+            nampilin(soal08);
+        }
+        static void soal9(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,] soal09 = new string[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    int rumus1 = 2 * j + 1;
+                    int rumus2 = 2 * ((n - 1) - j) + 1;
+                    if (j <= tengah)
+                        soal09[i, j] = rumus1.ToString();
+                    else
+                        soal09[i, j] = rumus2.ToString();
+                }
+            }
+            nampilin(soal09);
+        }
+        static void soal10(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,] soal010 = new string[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    int rumus1 = 2 * i;
+                    int rumus2 = 2*((n-1)-i);
+                    if (i <= tengah)
+                        soal010[i, j] = rumus1.ToString();
+                    else
+                        soal010[i, j] = rumus2.ToString();
+                }
+            }
+            nampilin(soal010);
+        }
+        static void soalpost(int n)
+        {
+            int tengah = (n - 1) / 2;
+            string[,] soal0post = new string[n, n];
+            int a = 0;
+            int b = 1;
+            int temp;
+            for (int i = 0; i < n; i++)
+            {
+                
+                for (int j = 0; j < n; j++)
+                {
+                    if (j == tengah || (i + j == n - 1 && i >= tengah) || (i == j && i >= tengah))
+                        soal0post[i, j] = b.ToString();
+                    else
+                        soal0post[i, j] = " ";
+                    //rumus  fibonaci
+                }
+                temp = a;
+                a = b;
+                b = temp + a;
+            }
+            nampilin(soal0post);
+        }
+       
+
+
+    }
+}
