@@ -1,0 +1,387 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace logic9
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int input1 = 0;
+            int input2 = 0;
+            int input3 = 0;
+            Console.WriteLine("masukan input1: ");
+            int.TryParse(Console.ReadLine(), out input1);
+            Console.WriteLine("masukan input2: ");
+            int.TryParse(Console.ReadLine(), out input2);
+            Console.WriteLine("masukan input3: ");
+            int.TryParse(Console.ReadLine(), out input3);
+
+            logic95lagi(input1,input2);
+            Console.ReadLine();
+        }
+        static void tampil(string[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+        static void logic91(int n1)
+        {
+            int kolom = (2 * n1) - 1; ;
+            int baris = n1;
+            string[,] array2d = new string[baris, kolom];
+            double[] angka = new double[n1];
+            double[] angka2 = new double[n1];
+            char[] huruf = new char[n1];
+            char hurufawal = 'A';
+            int pangkat1 = 0;
+            int tengah = n1 - 1;
+            for (int i = 0; i < n1; i++)
+            {
+                angka[i] = Math.Pow(2, pangkat1);
+                angka2[i] = Math.Pow(3, pangkat1);
+                huruf[i] = hurufawal;
+                if (i < (n1 - 1) / 2)
+                {
+                    hurufawal++;
+                    pangkat1++;
+                }
+                else
+                {
+                    pangkat1--;
+                    hurufawal--;
+                }
+            }
+
+
+
+            for (int i = 0; i < baris; i++)
+            {
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (j <= tengah)
+                    {
+                        if (i == j)
+                            array2d[i, j] = huruf[j].ToString();
+                        else if (i + j == (n1 - 1))
+                            array2d[i, j] = angka2[j].ToString();
+                    }
+                    else
+                        array2d[i, j] = array2d[i, (kolom - 1) - j];
+
+                }
+            }
+
+            tampil(array2d);
+
+        }
+        static void logic93(int n1, int n2)
+        {
+            int kolom = n1+((n1-1)*(n2-1));
+            int baris = n1;
+            int tengah = n1 - 1;
+            int tengah2 = tengah / 2;
+            string[,] array2d = new string[baris, kolom];
+            double[] dua = new double[n1];
+            double[] tiga = new double[n1];
+            char[] huruf = new char[n1];
+            char x = 'A';
+            int pangkat = 0;
+            for (int i = 0; i < n1; i++)
+            {
+                dua[i] = Math.Pow(2, pangkat);
+                tiga[i] = Math.Pow(3, pangkat);
+                huruf[i] = x;
+                if(i<tengah2)
+                {
+                    pangkat++;
+                    x++;
+                }
+                else
+                {
+                    pangkat--;
+                    x--;
+                }
+            }
+            int geser = 0;
+            for (int bangun = 1; bangun <= n2; bangun++)
+            {
+
+
+                if (bangun % 2 == 1)
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i == j)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i + j == tengah)
+                                array2d[i, j + geser] = tiga[j].ToString();
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i + j == tengah)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i == j)
+                                array2d[i, j + geser] = tiga[j].ToString();
+
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                        }
+                    }
+                }
+                geser += (n1 - 1);
+            }
+            tampil(array2d);
+        }
+        static void logic94(int n1, int n2)
+        {
+            int kolom = n1 + ((n1 - 1) * (n2 - 1));
+            int baris = n1;
+            int tengah = n1 - 1;
+            int tengah2 = tengah / 2;
+            string[,] array2d = new string[baris, kolom];
+            double[] dua = new double[n1];
+            double[] tiga = new double[n1];
+            char[] huruf = new char[n1];
+            char x = 'A';
+            int pangkat = 0;
+            for (int i = 0; i < n1; i++)
+            {
+                dua[i] = Math.Pow(2, pangkat);
+                tiga[i] = Math.Pow(3, pangkat);
+                huruf[i] = x;
+                if (i < tengah2)
+                {
+                    pangkat++;
+                    x++;
+                }
+                else
+                {
+                    pangkat--;
+                    x--;
+                }
+            }
+            int geser = 0;
+            for (int i = 0; i < n1; i++)
+            {
+                array2d[i, 0] = "+";
+                array2d[i, (kolom - 1)] = "+";
+            }
+            for (int bangun = 1; bangun <= n2; bangun++)
+            {
+                if (bangun % 2 == 1)
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i == j)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i + j == tengah)
+                                array2d[i, j + geser] = tiga[j].ToString();
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                            else if (i == 0 || i == (n1 - 1))
+                                array2d[i, j+geser] = "+";
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i + j == tengah)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i == j)
+                                array2d[i, j + geser] = tiga[j].ToString();
+
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                            else if (i == 0 || i == (n1 - 1))
+                                array2d[i, j + geser] = "+";
+                        }
+                    }
+                }
+                geser += (n1 - 1);
+            }
+            tampil(array2d);
+        }
+        static void logic95(int n1, int n2)
+        {
+            int kolom = n1 + ((n1 - 1) * (n2 - 1));
+            int baris = n1;
+            int tengah = n1 - 1;
+            int tengah2 = tengah / 2;
+            string[,] array2d = new string[baris, kolom];
+            double[] dua = new double[n1];
+            double[] tiga = new double[n1];
+            char[] huruf = new char[n1];
+            char x = 'A';
+            int pangkat = 0;
+            for (int i = 0; i < n1; i++)
+            {
+                dua[i] = Math.Pow(2, pangkat);
+                tiga[i] = Math.Pow(3, pangkat);
+                huruf[i] = x;
+                if (i < tengah2)
+                {
+                    pangkat++;
+                    x++;
+                }
+                else
+                {
+                    pangkat--;
+                    x--;
+                }
+            }
+            int geser = 0;
+            for (int bangun = 1; bangun <= n2; bangun++)
+            {
+                if (bangun % 2 == 1)
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i == j)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i + j == tengah)
+                                array2d[i, j + geser] = tiga[j].ToString();
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                            else if (i+j==tengah2 || i+j == tengah2 +n1-1 || i-j==tengah2 || j-i==tengah2)
+                                array2d[i, j + geser] = "*";
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i + j == tengah)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i == j)
+                                array2d[i, j + geser] = tiga[j].ToString();
+
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                            else if (i + j == tengah2 || i + j == tengah2 + n1 - 1 || i - j == tengah2 || j - i == tengah2)
+                                array2d[i, j + geser] = "*";
+                        }
+                    }
+                }
+                geser += (n1 - 1);
+            }
+            tampil(array2d);
+        }
+
+        static void menampilkan(string[,] terserah)
+        {
+            for (int i = 0; i < terserah.GetLength(0); i++)
+            {
+                for (int j = 0; j < terserah.GetLength(1); j++)
+                {
+                    Console.Write(terserah[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+
+        static void logic95lagi(int n1, int n2)
+        {
+            int kolom = 2 * n1 - 1;
+            int baris = n1;
+            int tengah = (kolom - 1) / 2;
+            int tengah2 = tengah / 2;
+            string[,] array2d = new string[baris, kolom];
+            double[] dua = new double[n1];
+            double[] tiga = new double[n1];
+            char[] huruf = new char[n1];
+            char x = 'A';
+            int pangkat = 0;
+            for (int i = 0; i < n1; i++)
+            {
+                dua[i] = Math.Pow(2, pangkat);
+                tiga[i] = Math.Pow(3, pangkat);
+                huruf[i] = x;
+                if (i < tengah2)
+                {
+                    pangkat++;
+                    x++;
+                }
+                else
+                {
+                    pangkat--;
+                    x--;
+                }
+            }
+            int geser = 0;
+            for (int bangun = 1; bangun <= n2; bangun++)
+            {
+                if (bangun % 2 == 1)
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i == j)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i + j == tengah)
+                                array2d[i, j + geser] = tiga[j].ToString();
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                            else if (i + j == tengah2 || i + j == tengah2 + n1 - 1 || i - j == tengah2 || j - i == tengah2)
+                                array2d[i, j + geser] = "*";
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < n1; i++)
+                    {
+                        for (int j = 0; j < n1; j++)
+                        {
+                            if (i + j == tengah)
+                                array2d[i, j + geser] = huruf[j].ToString();
+                            else if (i == j)
+                                array2d[i, j + geser] = tiga[j].ToString();
+                            else if (i == tengah2)
+                                array2d[i, j + geser] = dua[j].ToString();
+                            else if (i + j == tengah2 || i + j == tengah2 + n1 - 1 || i - j == tengah2 || j - i == tengah2)
+                                array2d[i, j + geser] = "*";
+                        }
+                    }
+                }
+                geser += (n1 - 1);
+
+            }
+            menampilkan(array2d);
+        }
+
+
+        
+    }
+}
