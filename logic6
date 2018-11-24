@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace logic6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int input1 = 0;
+            int input2 = 0;
+            int input3 = 0;
+            Console.WriteLine("masukan input1: ");
+            int.TryParse(Console.ReadLine(), out input1);
+            Console.WriteLine("masukan input2: ");
+            int.TryParse(Console.ReadLine(), out input2);
+            Console.WriteLine("masukan input3: ");
+            int.TryParse(Console.ReadLine(), out input3);
+            Console.WriteLine("\n\n");
+
+            logic69(input1);
+
+            Console.ReadLine();
+        }
+        static void tampil(string[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+        static void logic69(int n)
+        {
+            int kolom = ((n + 2) * ((n + 2) + 1) / 2) - 3;
+            int baris = n + 2;
+            string[,] array2d = new string[baris, kolom];
+            int[] angka = new int[kolom];
+            int nomor = 1;
+            for (int i = 0; i < kolom; i++)
+            {
+                angka[i] = nomor;
+                nomor++;
+            }
+            int geser = 0;
+            int geser2 = n - 1;
+            int tambah = 0;
+            for (int bangun = 3; bangun <= (n + 2); bangun++)
+            {
+
+
+                for (int i = 0; i < 3 + tambah; i++)
+                {
+                    int urut = 0;
+                    for (int j = 0; j < 3 + tambah; j++)
+                    {
+                        if (i + j == 3 - 1 + tambah || i == 3 - 1 + tambah || j == 3 - 1 + tambah)
+                        {
+                            array2d[geser2 + i, j + geser] = angka[urut + geser].ToString();
+                        }
+                        urut++;
+
+                    }
+
+                }
+                geser2--;
+                geser += bangun;
+                tambah++;
+            }
+            tampil(array2d);
+        }
+        static void logic610(int n)
+        {
+            int kolom = n;
+            int baris = n;
+            string[,] array2d = new string[baris, kolom];
+            int sesuatu = 1;
+            for (int i = 0; i < baris; i++)
+            {
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        if (j < sesuatu)
+                            array2d[i, j] = (i + 1).ToString();
+                    }
+                    else
+                    {
+                        if (j < sesuatu)
+                            array2d[i, (n - 1) - j] = (i + 1).ToString();
+                    }
+                }
+                sesuatu++;
+            }
+            tampil(array2d);
+        }
+    }
+}
