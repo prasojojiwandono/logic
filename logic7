@@ -1,0 +1,355 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soalsoal
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int input = 0;
+            int input2 = 0;
+            int input3 = 0;
+            Console.WriteLine("masukan input1: ");
+            int.TryParse(Console.ReadLine(), out input);
+            Console.WriteLine("masukan input2: ");
+            int.TryParse(Console.ReadLine(), out input2);
+            Console.WriteLine("masukan input3: ");
+            int.TryParse(Console.ReadLine(), out input3);
+            Console.WriteLine("\n\n");
+
+            logic7post(input);
+
+            Console.Read();
+        }
+        static void tampil(string[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+
+            }
+        }
+		 static void logic73(int n)
+        {
+            int kolom = (4*n)-1;
+            int baris = (2*n)+1;
+            string[,] array2d = new string[baris, kolom];
+            int geser = 0;
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+
+
+                for (int i = 0; i < baris-geser; i++)
+                {
+                    array2d[i+geser, 0+geser] = "*";
+                    array2d[i+geser, (kolom - 1)-geser] = "*";
+                }
+                for (int i = 0; i < kolom-(2*geser); i++)
+                {
+                    array2d[0+geser, i+geser] = "*";
+                }
+                geser += 2;
+            }
+            tampil(array2d);
+        }
+        static void logic74(int n)
+        {
+            int kolom = (4 * n) - 1;
+            int baris = (2 * n) + 1;
+            string[,] array2d = new string[baris, kolom];
+            int geser = 0;
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+                for (int i = 0; i < baris - geser; i++)
+                {
+                    array2d[i , 0 + geser] = "*";
+                    array2d[i , (kolom - 1) - geser] = "*";
+                }
+                for (int i = 0; i < kolom - (2 * geser); i++)
+                {
+                    array2d[(baris-1) - geser, i + geser] = "*";
+                }
+                geser += 2;
+            }
+            tampil(array2d);
+        }
+        static void logic75(int n)
+        {
+            int kolom = (4 * n) - 1;
+            int baris = (2 * n) + 1;
+            string[,] array2d = new string[baris, kolom];
+
+            int tengah = (kolom - 1) / 2;
+            int angka2 = baris;
+            int perubah = 0;
+            for (int i = 0; i < baris; i++)
+            {
+                int angka = 1;
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (i - j < 0 && i + j < (kolom - 1))
+                    {
+                        if (i % 2 == 0)
+                        {
+                            array2d[i, j] = angka.ToString();
+
+                            if (j < tengah)
+                                angka++;
+                            else
+                                angka--;
+                        }
+                    }
+                    else
+                    {
+                        if (j % 2 == 0)
+                        {
+                            array2d[i, j] = angka2.ToString();
+                        }
+                    }
+
+                }
+                angka2--;
+
+            }
+
+            tampil(array2d);
+        }
+        static void logic76(int n)
+        {
+            int kolom = (n * n) + (n - 1);
+            int baris = n;
+            string[,] array2d = new string[baris, kolom];
+            int geser = 0;
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (j == 0 || i == 0 || j == (n - 1) || i == (n - 1))
+                            array2d[i, j + geser] = "*";
+                    }
+                }
+                geser = bangun * (n + 1);
+            }
+            tampil(array2d);
+        }
+        static void logic77(int n)
+        {
+            int kolom = (n * n) + (n - 1);
+            int baris = n;
+            string[,] array2d = new string[baris, kolom];
+
+            int geser = 0;
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+                int angka = 1;
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[0, i + geser] = angka.ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[i, n - 1 + geser] = angka.ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[n - 1, (n - 1) - i + geser] = angka.ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[(n - 1) - i, 0 + geser] = angka.ToString();
+                    angka++;
+                }
+                geser = bangun * (n + 1);
+            }
+            tampil(array2d);
+        }
+        static void logic78(int n1, int n2, int n3)
+        {
+            int kolom = (n3 * n2) + (n3 - 1);
+            int baris = n1;
+            string[,] array2d = new string[baris, kolom];
+            int geser = 0;
+            for (int bangun = 1; bangun <= n3; bangun++)
+            {
+                int angka = 1;
+                for (int i = 0; i < (n2 - 1); i++)
+                {
+                    array2d[0, i + geser] = angka.ToString();
+                    angka += 2;
+                }
+                for (int i = 0; i < (n1 - 1); i++)
+                {
+                    array2d[i, (n2 - 1) + geser] = angka.ToString();
+                    angka += 2;
+                }
+                for (int i = 0; i < (n2 - 1); i++)
+                {
+                    array2d[(n1 - 1), (n2 - 1) - i + geser] = angka.ToString();
+                    angka += 2;
+                }
+                for (int i = 0; i < (n1 - 1); i++)
+                {
+                    array2d[(n1 - 1) - i, 0 + geser] = angka.ToString();
+                    angka += 2;
+                }
+                geser = bangun * (n2 + 1);
+            }
+            tampil(array2d);
+        }
+        static void logic79(int n)
+        {
+            int kolom = n * n;
+            int baris = n * n;
+            string[,] array2d = new string[baris, kolom];
+            int angka = 1;
+            int geserbaris = 0;
+            for (int p = 1; p <= n; p++)
+            {
+                int geserkolom = 0;
+                for (int q = 1; q <= n; q++)
+                {
+                    if (p==1 || q==1 || p==n || q==n)
+                    {
+                        for (int i = 0; i < n; i++)
+                        {
+                            for (int j = 0; j < n; j++)
+                            {
+                                if (i + j == (n - 1) || j == (n - 1) || i == (n - 1))
+                                    array2d[i + geserbaris, j + geserkolom] = angka.ToString();
+                            }
+                        }
+                        
+                        angka++;
+                    }
+                    geserkolom = q * n;
+                }
+                geserbaris = p * n;
+            }
+            tampil(array2d);
+        }
+        static void logic710(int n)
+        {
+            int kolom = n * n;
+            int baris = n * n;
+            string[,] array2d = new string[baris, kolom];
+            int angka = 1;
+            int geserbaris = 0;
+            for (int p = 1; p <= n; p++)
+            {
+                int geserkolom = 0;
+                for (int q = 1; q <= n; q++)
+                {
+                    if (p == 1 || q == 1 || p == n || q == n)
+                    {
+                        for (int i = 0; i < n; i++)
+                        {
+                            for (int j = 0; j < n; j++)
+                            {
+                                if (i -j==0 || j == 0 || i == (n - 1))
+                                    array2d[i + geserbaris, j + geserkolom] = angka.ToString();
+                            }
+                        }
+
+                        angka++;
+                    }
+                    geserkolom = q * n;
+                }
+                geserbaris = p * n;
+            }
+            tampil(array2d);
+        }
+        static void logic7pr(int n)
+        {
+            int kolom = n;
+            int baris = n;
+            int ling = (n + 1) / 2;
+            string[,] array2d = new string[n, n];
+            int angka = 1;
+            int geser = 0;
+            int tengah = (n-1)/2;
+            for (int x = 1; x <= ling; x++)
+            {
+                for (int i = 0; i < (n - 1)-(2*geser); i++)
+                {
+                    array2d[0+geser, i+geser] = angka.ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1)-(2*geser); i++)
+                {
+                    array2d[i+geser, (n - 1)-geser] = angka.ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1) - (2 * geser); i++)
+                {
+                    array2d[(n - 1)-geser, (n - 1) - i-geser] = angka.ToString();
+                    angka++;
+                }
+
+                for (int i = 0; i < (n - 1) - (2 * geser); i++)
+                {
+                    array2d[(n - 1) - i-geser, 0+geser] = angka.ToString();
+                    angka++;
+                }
+                geser = x;
+            }
+            if (n % 2 == 1)
+                array2d[tengah, tengah] = (n * n).ToString();
+
+            tampil(array2d);
+        }
+        static void logic7post(int n)
+        {
+            int kolom = n * n;
+            int baris = n * n;
+            string[,] array2d = new string[baris, kolom];
+            int[] fibo = new int[(2 * n) + (2 * (n - 2))];
+            for (int i = 0; i < fibo.Length; i++)
+            {
+                if (i < 2)
+                    fibo[i] = 1;
+                else
+                    fibo[i] = fibo[i - 1] + fibo[i - 2];
+            }
+            int geser = 0;
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+                int angka = 0;
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[0 + geser, i + geser] = fibo[angka].ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[i + geser, (n - 1) + geser] = fibo[angka].ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[(n - 1) + geser, (n - 1) - i + geser] = fibo[angka].ToString();
+                    angka++;
+                }
+                for (int i = 0; i < (n - 1); i++)
+                {
+                    array2d[(n - 1) - i + geser, 0 + geser] = fibo[angka].ToString();
+                    angka++;
+                }
+                geser = bangun * n;
+            }
+            tampil(array2d);
+        }
+    }
+}
