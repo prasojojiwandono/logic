@@ -1,0 +1,374 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace logic4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("masukan angka:  ");
+            int input = 0;
+            int input2 = 0;
+            int.TryParse(Console.ReadLine(), out input);//harus pake readline
+            Console.WriteLine("masukan angka2: ");
+            int.TryParse(Console.ReadLine(), out input2);
+            Console.WriteLine("\n");
+            posttest(input);
+            Console.WriteLine("\n");
+            Console.Read();
+        }
+        static void nampilin(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + "\t");
+            }
+        }
+
+        static void nampilin2(string[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+        static void nampilin3(char[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+        static void soal1(int n)
+        {
+            int baris = n;
+            int kolom = (n * 2) - 1;
+            string[,] segitiga1 = new string[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                int angka = 1;
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (i + j >= (n - 1) && j <= (n - 1) + i)
+                    {
+                        segitiga1[i, j] = angka.ToString();
+                        angka++;
+                    }
+                    else
+                        segitiga1[i, j] = " ";
+                }
+            }
+            nampilin2(segitiga1);
+        }
+        static void soal2(int n)
+        {
+            int baris = n;
+            int kolom = (n * 2) - 1;
+            int aki = kolom - 1;
+            int tki = aki / 2;
+            int abi = n - 1;
+            string[,] segitiga2 = new string[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                int angka = 1;
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (j >= i && i + j <= aki)
+                    {
+                        segitiga2[i, j] = angka.ToString();
+                        angka++;
+                    }
+                    else
+                        segitiga2[i, j] = " ";
+                }
+            }
+            nampilin2(segitiga2);
+        }
+        static void soal3(int n)
+        {
+            int baris = n;
+            int kolom = n;
+            int aki = kolom - 1;
+            int tki = aki / 2;
+            int abi = n - 1;
+            string[,] segitiga3 = new string[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                int angka = 1;
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (i + j >= tki && i <= j + tki && i + tki >= j && i + j <= aki + tki)
+                    {
+                        segitiga3[i, j] = angka.ToString();
+                        angka++;
+                    }
+                    else
+                        segitiga3[i, j] = " ";
+                }
+            }
+            nampilin2(segitiga3);
+        }
+        static void soal4(int n)
+        {
+            int baris = n;
+            int kolom = (n * 2) - 1;
+            char[,] segitiga4 = new char[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                char huruf = 'A';
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (i + j >= (n - 1) && j <= (n - 1) + i)
+                    {
+                        segitiga4[i, j] = huruf;
+                        huruf++;
+                    }
+                    else
+                        segitiga4[i, j] = ' ';
+                }
+            }
+            nampilin3(segitiga4);
+        }
+        static void soal5(int n)
+        {
+            int baris = n;
+            int kolom = (n * 2) - 1;
+            int aki = kolom - 1;
+            int tki = aki / 2;
+            int abi = n - 1;
+            char[,] segitiga5 = new char[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                char huruf = 'A';
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (j >= i && i + j <= aki)
+                    {
+                        segitiga5[i, j] = huruf;
+                        huruf++;
+                    }
+                    else
+                        segitiga5[i, j] = ' ';
+                }
+            }
+            nampilin3(segitiga5);
+        }
+        static void soal6(int n)
+        {
+            int kolom = 2 * n - 1;
+            int baris = n;
+            int aki = kolom - 1;
+            int tki = aki / 2;
+            int abi = n - 1;
+
+            string[,] ganjil = new string[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                int a = 1;
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (i + j >= tki && j - i <= tki)
+                    {
+                        ganjil[i, j] = a.ToString();
+                        if (j < tki)
+                            a += 2;
+                        else
+                            a -= 2;
+                    }
+                    else
+                        ganjil[i, j] = " ";
+                }
+            }
+            nampilin2(ganjil);
+        }
+        static void soal7(int n)
+        {
+            int kolom = 2 * n - 1;
+            int baris = n;
+            int aki = kolom - 1;
+            int abi = n - 1;
+            int tki = aki / 2;
+
+            string[,] ganjil = new string[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                int a = 1;
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (i <= j && i + j <= aki)
+                    {
+                        ganjil[i, j] = a.ToString();
+                        if (j < tki)
+                            a += 2;
+                        else
+                            a -= 2;
+                    }
+                    else
+                        ganjil[i, j] = " ";
+                }
+            }
+            nampilin2(ganjil);
+        }
+        static void soal8(int n)
+        {
+            int pk = n;
+            int pb = n;
+
+            int iak = n - 1;
+            int iab = n - 1;
+            int itk = iak / 2;
+            int itb = iab / 2;
+            string[,] array2d = new string[n, n];
+            for (int i = 0; i < pb; i++)
+            {
+                int angka = 1;
+                for (int j = 0; j < pk; j++)
+                {
+                    bool s = i - j <= itb && j - i <= itb && i + j >= itk && i + j <= itk + iak;
+                    if (s)
+                    {
+                        array2d[i, j] = angka.ToString();
+                        if (s)
+                            angka += 2;
+                        else
+                            angka -= 2;
+                    }
+                }
+            }
+            nampilin2(array2d);
+        }
+        static void soal9(int n1, int n2)
+        {
+            int kolom = n1 + ((n1 - 1) * (n2 - 1));
+            int iak = kolom - 1;
+            int iak1 = n1 - 1;
+            int baris = n1;
+            int iab = n1 - 1;
+            int itk1 = (n1 - 1) / 2;
+            int itb = (n1 - 1) / 2;
+            string[,] array2d = new string[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                int angka = 1;
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (j <= iak1)
+                    {
+                        bool s = i - j <= itb && j - i <= itb && i + j >= itk1 && i + j <= itk1 + iak1;
+                        if (s)
+                        {
+                            array2d[i, j] = angka.ToString();
+                            if (j < itk1)
+                                angka += 2;
+                            else
+                                angka -= 2;
+                        }
+                    }
+                    else
+                        array2d[i, j] = array2d[i, j - iak1];
+                }
+            }
+            nampilin2(array2d);
+
+
+        }
+
+        static void soal10(int n1, int n2)
+        {
+            int kolom = n1 + (n1 - 1) * (n2 - 1);
+            int baris = n1;
+            int iak1 = n1 - 1;
+            int iab = n1 - 1;
+            int itk1 = iak1 / 2;
+            int itb = iab / 2;
+            int iak = kolom - 1;
+            char[,] array2d = new char[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                char a = 'A';
+                for (int j = 0; j < kolom; j++)
+                {
+                    bool s = i - j <= itb && j - i <= itb && i + j >= itk1 && i + j <= itk1 + iak1;
+                    if (j <= iak1)
+                    {
+                        if (s)
+                        {
+                            array2d[i, j] = a;
+
+                            if (j < itk1)
+                                a++;
+                            else
+                                a--;
+                        }
+                    }
+                    else
+                        array2d[i, j] = array2d[i, j - iak1];
+
+                }
+            }
+            nampilin3(array2d);
+
+        }
+
+        static void posttest(int n)
+        {
+            int kolom = 2 * n - 1;
+            int baris = n;
+            int iak = kolom - 1;
+            int iab = baris - 1;
+            int itk = iak / 2;
+            int itb = iab / 2;
+            int tengah = (n - 1) / 2;
+            int awal = 1;
+            int[] fibo = new int[baris];
+            for (int i = 0; i < baris; i++)
+            {
+                if (i <= 1)
+                    fibo[i] = awal;
+                else
+                    fibo[i] = fibo[i - 1] + fibo[i - 2];
+            }
+            string[,] array2d = new string[baris, kolom];
+            for (int i = 0; i < baris; i++)
+            {
+                char x = 'A';
+                for (int j = 0; j < kolom; j++)
+                {
+                    if (j <= itk)
+                    {
+                        if (i == j || i + j == itk)
+                            array2d[i, j] = fibo[j].ToString();
+                        else if (j - i > 1 && i + j < (itk - 1))
+                        {
+                            array2d[i, j] = x.ToString();
+                            if (j < tengah)
+                                x++;
+                            else
+                                x--;
+                        }
+                        else if (i - j > 1 && i + j < (itk - 1))
+                            array2d[i, j] = array2d[j, i];
+                        else if (i + j > (1 + itk) && i - j > 1)
+                            array2d[i, j] = array2d[(iab - i), j];
+                    }
+                    else
+                        array2d[i, j] = array2d[i, iak - j];
+                }
+            }
+            nampilin2(array2d);
+        }
+
+    }
+}
