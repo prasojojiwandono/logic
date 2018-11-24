@@ -1,0 +1,457 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace soal
+{
+    class logic5
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("masukan angka:  ");
+            int input = 0;
+            int input2 = 0;
+            int.TryParse(Console.ReadLine(), out input);//harus pake readline
+            Console.WriteLine("masukan angka2: ");
+            int.TryParse(Console.ReadLine(), out input2);
+            Console.WriteLine("\n");
+            soal10(input);
+            Console.WriteLine("\n");
+            Console.Read();
+        }
+        static void nampilin(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + "\t");
+            }
+        }
+        static void nampilin2(string[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine("\n\n");
+            }
+        }
+        static void soal1(int n)
+        {
+            int panjang = 0;
+            for (int i = 0; i <= n; i++)// inisiasi panjang
+            {
+                panjang = panjang + i;
+            }
+            string[,] kotak = new string[panjang, panjang];
+            int geserbaris = 0;
+            //looping jumlah bangun
+            for (int bangun = 0; bangun <= n; bangun++)
+            {
+                //looping baris
+                for (int i = 0; i < bangun; i++)
+                {
+                    //looping kolom
+                    for (int j = 0; j < bangun; j++)
+                    {
+                        kotak[i + geserbaris, j + geserbaris] = "*";// i dan jnya digeser dulu
+                    }
+                }
+                geserbaris += bangun;
+            }
+            nampilin2(kotak);
+        }
+        static void soal2(int n)
+        {
+            int panjang = 0;// inisiasi panjang
+            for (int i = 0; i <= n; i++)
+            {
+                panjang = panjang + i; // panjang saat ini adalah = panjang sebelumnya + i
+            }
+            string[,] kotak = new string[panjang, panjang]; // buat array
+            int geserbaris = 0;
+            //looping jumlah bangun
+            for (int bangun = 0; bangun <= n; bangun++)
+            {
+                //looping baris
+                for (int i = 0; i < bangun; i++)
+                {
+                    //looping kolom
+                    for (int j = 0; j < bangun; j++)
+                    {
+                        kotak[i + geserbaris, (panjang - 1 - j) - geserbaris] = "*";//i dan j nya digeser dulu
+                    }
+                }
+                geserbaris += bangun;//geserbaris saat ini = geserbaris sebelumnya + bangun
+            }
+            nampilin2(kotak);
+        }
+        static void soal3(int n)
+        {
+            int kolom = 0;
+            int baris = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                kolom += 2 * i - 1; // ini buat ngitung jumlah kolom
+                baris += i;
+            }
+            string[,] array2d = new string[baris, kolom];// buat array
+            int geserbaris = 0;
+            int geserkolom = 0;
+            for (int bangun = 1; bangun <= n; bangun++)//ini looping bangun
+            {
+                int bar = bangun;//untuk tinggi segitiga
+                int kol = 2 * bangun - 1;//untuk panjang segitiga
+                int itengkol = (kol - 1) / 2;
+                for (int i = 0; i < bar; i++)
+                {
+                    for (int j = 0; j < kol; j++)
+                    {
+                        if (i + j >= itengkol && j - i <= itengkol)//syarat batas segitiga
+                        {
+                            array2d[i + geserbaris, j + geserkolom] = "*";//ingat digeser dulu
+                        }
+                    }
+                }
+                geserbaris += bar;// ini pergeseran barisnya
+                geserkolom += kol;// ini pergeseran kolomnya
+            }
+            nampilin2(array2d);
+        }
+        static void soal4(int n)
+        {
+            int baris = 0;
+            int kolom = 0;
+            for (int i = 1; i <= n; i++)// looping baris dan kolom
+            {
+                baris += i; // ini nilai looping baris
+                kolom += 2 * i - 1; // ini nilai looping kolom
+            }
+            string[,] array2d = new string[baris, kolom];// ini buat array
+            int geserbaris = 0;// inisiasi dulu nilai geserbaris=0
+            int geserkolom = 0;// inisiasi dulu nilai geserkolom = 0
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+                int tengah = ((2 * bangun - 1) - 1) / 2;// ini tengah segitiga
+                for (int i = 0; i < bangun; i++)//looping baris
+                {
+                    for (int j = 0; j < (2 * bangun - 1); j++)//looping kolom
+                    {
+                        if (i + j >= tengah && j - i <= tengah)// ini syaratnya
+                            array2d[i + geserbaris, ((kolom - 1 - geserkolom) + j)] = "*";//i dan jnya digeser
+                    }
+                }
+                geserbaris += bangun;// ini rumus untuk menggeser baris
+                geserkolom += 2 * bangun + 1; //ini rumus untuk menggeser kolom
+            }
+            nampilin2(array2d);
+        }
+        static void soal5(int n)
+        {
+            int kolom = 0;// inisiasi kolom
+            int baris = 0;// inisiasi baris
+            for (int i = 1; i <= n; i++)
+            {
+                kolom += 2 * i - 1;// rumus untuk mendapatkan kolom
+                baris += i;// rumus untuk mendapatkan baris
+            }
+            string[,] array2d = new string[baris, kolom];
+            int geserbaris = 0;
+            int geserkolom = 0;
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+                int tengah = (2 * bangun - 1 - 1) / 2;// ini tengah segitiga
+                for (int i = 0; i < bangun; i++)//looping baris
+                {
+                    for (int j = 0; j < (2 * bangun - 1); j++)//looping kolom
+                    {
+                        bool s = i + j <= (2 * bangun - 2) && i - j <= 0;// syaratnya perlu dipikirkan lagi
+                        if (s)
+                            array2d[i + geserbaris, j + geserkolom] = "*";// i dan j nya digeser
+                    }
+                }
+                geserbaris += bangun;//ini pergeseran barisnya
+                geserkolom += 2 * bangun - 1;// ini pergeseran kolomnya
+            }
+            nampilin2(array2d);
+        }
+        static void soal6(int n)
+        {
+            int panjang = 0;//inisiasi panjang
+            for (int i = 1; i <= n; i++)
+            {
+                panjang += i;//penambahan panjang
+
+            }
+            string[,] array2d = new string[panjang, panjang];//buat array 
+            int geser = 0;// inisiasi nilai geser
+            for (int nomor = 1; nomor <= n; nomor++)// ini looping nomor
+            {
+                int angka = 1;//inisiasi angka
+                for (int i = 0; i < nomor; i++)//looping baris
+                {
+                    for (int j = 0; j < nomor; j++)//looping kolom
+                    {
+                        array2d[i + geser, j + geser] = angka.ToString();//i dan j nya ditambah geser
+                        angka++;//ini jangan lupa ditaruh untuk mengincrementkan
+                    }
+                }
+                geser = geser + nomor;// nilai geser berubah setiap nomor
+            }
+            nampilin2(array2d);
+        }
+        static void soal7(int n)
+        {
+            int kolom = 0;// inisiasi nilai kolom
+            int baris = 0;// inisiasi nilai baris
+            for (int i = 1; i <= n; i++)
+            {
+                kolom += i;//penambahan kolom
+                baris += i;//penambahan baris
+            }
+            string[,] array2d = new string[baris, kolom];//buat array
+            int geserbaris = 0;//inisiasi pergeseran baris
+            int geserkolom = 0;//inisiasi pergeseran kolom
+            for (int bangun = 1; bangun <= n; bangun++)//looping bangun
+            {
+                int angka = 1;// inisiasi angka
+                for (int i = 0; i < bangun; i++)//looping baris
+                {
+                    for (int j = 0; j < bangun; j++)//looping kolom
+                    {
+                        array2d[i + geserbaris, (kolom - 1 - geserkolom) + j] = angka.ToString();//coba lihat pergeseran kolom yang unik
+                        angka++;
+                    }
+                }
+                geserbaris += bangun;// geserbaris = geserbaris sebelumnya + bangun
+                geserkolom += (bangun + 1);// geserkolom = geserkolom sebelumnya + bangun + 1
+            }
+            nampilin2(array2d);
+        }
+        static void soal8(int n)
+        {
+            int kolom = 0;// inisiasi kolom
+            int baris = 0;// inisiasi baris
+            for (int i = 1; i <= n; i++)
+            {
+                kolom += i;// ini penambahan kolom
+                baris += i;// ini penambahan baris
+            }
+            string[,] array2d = new string[baris, kolom];
+            int geser = 0;// inisiasi geser
+
+            int nilaiGanjil = 1;// nilai awal apabila nilai bangun ganjil
+            int nilaiGenap = 2;//nilai awal apabila nilai bangun genap
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+
+                for (int i = 0; i < bangun; i++)//looping baris
+                {
+                    for (int j = 0; j < bangun; j++)//looping kolom
+                    {
+                        if (bangun % 2 == 1)//jika nilai bangun ganjil
+                        {
+                            if (i % 2 == 0)//jika i genap, maka pengisian dimulai dari kiri
+                                array2d[i + geser, j + geser] = nilaiGanjil.ToString();
+                            else// jika ganjil maka pengisian dimulai dari kanan
+                                array2d[i + geser, (geser + bangun - 1 - j)] = nilaiGanjil.ToString();// i dan jnya digeser 
+                            nilaiGanjil += 2;
+                        }
+                        else//jika nilai bangun genap
+                        {
+                            if (i % 2 == 0)// jika nilai i adalah genap, maka pengisian dimulai dari kiri
+                                array2d[i + geser, j + geser] = nilaiGenap.ToString();
+                            else// jika nilai i adalah ganjil, maka pengisian dimulai dari kanan
+                                array2d[i + geser, (geser + bangun - 1 - j)] = nilaiGenap.ToString();//i dan jnya digeser
+                            nilaiGenap += 2;
+                        }
+                    }
+
+                }
+                geser += bangun;
+
+            }
+            nampilin2(array2d);
+        }
+        static void soal9(int n)
+        {
+            int kolom = 0;// inisiasi baris
+            int baris = 0;// inisiasi kolom
+            for (int i = 1; i <= n; i++)
+            {
+                baris += i;//penambahan baris
+                kolom += 2;// penambahan kolom
+            }
+            kolom -= 1;// ini kolom harus dikurangi 1
+            string[,] array2d = new string[baris, kolom];//buat array
+            int geserkolom = 0;
+            int geserbaris = 0;
+            int tengkol = (kolom - 1) / 2;// ada baiknya index tengah kolom diberi nilai terlebih dahulu
+            for (int bangun = 1; bangun <= n; bangun++)
+            {
+                int tengah = (2 * bangun - 1 - 1) / 2;// ini juga, index tengah bangun ada baiknya di beri variable
+                for (int i = 0; i < bangun; i++)//looping baris
+                {
+                    for (int j = 0; j < (2 * bangun - 1); j++)//looping kolom
+                    {
+                        if (i + j >= tengah && j - i <= tengah)//ini syaratnya, pada prinsipnya ga jauh beda sama segitiga yang lain
+                            array2d[i + geserbaris, (tengkol - geserkolom) + j] = "*";//i dan j nya digeser
+                    }
+                }
+                geserkolom++;// ini ada pergeseran kolom yang spesial
+                geserbaris += bangun;
+            }
+            nampilin2(array2d);
+        }
+        static void soal10(int n)
+        {
+            int kolom = 0;//inisiasi kolom
+            int baris = 0;//inisiasi baris
+            for (int i = 1; i <= n; i++)
+            {
+                kolom += 2;//penambahan kolom
+                baris += i;//penambahan baris
+            }
+            kolom -= 1;// ingat kolom dikurangi 1
+            int tengkol = (kolom - 1) / 2;//inisiasi index tengah kolom
+            double set = Math.Pow(2, n);// keluaran math.pow adalah double
+            int isi = Convert.ToInt32(set);// set diubah ke integer
+            int[] fibo = new int[isi];// buat array fibonaci
+            int angka = 1;
+            for (int i = 0; i < isi; i++)//looping fibonaci
+            {
+                if (i <= 1)
+                    fibo[i] = angka;
+                else
+                    fibo[i] = fibo[i - 1] + fibo[i - 2];
+            }
+            string[,] array2d = new string[baris, kolom];// buat array untuk soal
+            int geserbaris = 0;//inisiasi pergeseran baris
+            int geserkolom = 0;//inisiasi pergeseran kolom
+
+            for (int bangun = 1; bangun <= n; bangun++)//looping bangun
+            {
+                int nomor = 1;
+                int tengah = (2 * bangun - 1 - 1) / 2;// menentukan tengah bangun
+                for (int i = 0; i < bangun; i++)//looping baris
+                {
+                    for (int j = 0; j < 2 * bangun - 1; j++)//looping kolom
+                    {
+                        if (i + j >= tengah && j - i <= tengah)//syarat segitiga
+                        {
+                            if (bangun % 2 == 1)//pengisian bangun jika nilai bangun adalah ganjil
+                            {
+                                array2d[i + geserbaris, (tengkol - geserkolom) + j] = nomor.ToString();// i dan j nya digeser
+                                nomor += 2;
+                            }
+                            else//pengisian bangun jika nilai bangun adalah genap
+                            {
+                                array2d[i + geserbaris, (tengkol - geserkolom) + j] = fibo[nomor - 1].ToString();//i dan jnya digeser 
+                                nomor++;
+                            }
+                        }
+                    }
+                }
+                geserbaris += bangun;//rumus pergeseran baris
+                geserkolom++;//rumus pergeseran kolom
+            }
+            nampilin2(array2d);
+        }
+        static void posttest(int n)
+        {
+            double c = Math.Pow(n, 2);// inisiasi jumlah fibonaci yang akan diurutkan
+            int b = Convert.ToInt32(c);// harus dikonvert ke integer terlebih dahulu 
+            int[] fibo = new int[b];// buat array fibonaci
+            int angka = 0;
+            for (int i = 0; i < b; i++)// looping fibonaci
+            {
+                if (i <= 1)
+                    fibo[i] = 1;
+                else
+                    fibo[i] = fibo[i - 1] + fibo[i - 2];
+            }
+            string[,] array2d = new string[n, n];// buat array untuk soal
+            for (int i = 0; i < n; i++)// looping baris
+            {
+                for (int j = 0; j < n; j++)//looping kolom
+                {
+                    if (i % 4 == 0)// jika i mod 4 sama dengan nol maka diisi dari kiri kekanan
+                    {
+                        array2d[i, j] = fibo[angka].ToString();
+                        angka++;
+                    }
+                    else if (i % 4 == 1)// jika i mod 4 sama dengan 1 maka diisi pada bagian yang paling kanan
+                    {
+                        if (j < n - 1)// ini menunjukan syarat untuk pengosongan
+                            array2d[i, j] = " ";
+                        else
+                        {
+                            array2d[i, j] = fibo[angka].ToString();
+                            angka++;
+                        }
+
+                    }
+                    else if (i % 4 == 2)// jika i mod 4 sama dengan 2 maka diisi dari kanan ke kiri
+                    {
+                        array2d[i, (n - 1 - j)] = fibo[angka].ToString();
+                        angka++;
+                    }
+                    else if (i % 4 == 3)// jika i mod 4 sama dengan 3 maka diisi pada bagian paling kiri
+                    {
+                        if (j == 0)// ini menunjukan syarat untuk mengisi bagian paling kiri
+                        {
+                            array2d[i, j] = fibo[angka].ToString();
+                            angka++;
+                        }
+                        else
+                            array2d[i, j] = " ";
+                    }
+
+                }
+            }
+            nampilin2(array2d);
+        }
+        static void pr(int n)
+        {
+            int kolom = n * n;// inisiasi kolom
+            int baris = n * (n + 1) / 2;// inisiasi baris
+            int[] fibo = new int[kolom];// buat array fibonaci
+            for (int i = 0; i < kolom; i++)// looping fibonaci
+            {
+                if (i < 2)
+                    fibo[i] = 1;
+                else
+                    fibo[i] = fibo[i - 1] + fibo[i - 2];
+            }
+            string[,] array2d = new string[baris, kolom];//buat array soal
+            
+            int geserbaris = 0;
+            int geserkolom = 0;
+            for (int bangun = 1; bangun <= n; bangun++)// looping bangun
+            {
+                int nomor = 0;// ingat dimana akan menginisiasi niali nomor
+                int tengkol = (2*bangun-1-1)/2;// index tengah kolom
+                for (int i = 0; i < bangun; i++)//looping baris
+                {
+                    for (int j = 0; j < (2*bangun-1); j++)//looping kolom
+                    {
+                        if (i + j >= tengkol && j - i <= tengkol)// syarat bentuk segitiga
+                        {
+                            array2d[i + geserbaris, j + geserkolom] = fibo[nomor].ToString();// ingat posisi i dan j nya digeser
+                            nomor++;// ingat untuk di incrementkan
+                        }
+                        
+                    }
+                }
+                geserbaris += bangun;// geserbaris = geserbaris + bangun
+                geserkolom += 2 * bangun - 1; // geserkolom = geserkolom + 2*bangun-1
+            }
+            nampilin2(array2d);
+        }
+    }
+
+}
+
