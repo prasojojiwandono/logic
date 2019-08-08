@@ -1,4 +1,5 @@
-#untuk permasalahan yang akan dipecahkan dalam kodingan ini dapat dilihat selengkapnya di https://app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/
+#untuk permasalahan yang akan dipecahkan dalam kodingan ini dapat dilihat selengkapnya di 
+#https://app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/
 
 
 def solution(A):
