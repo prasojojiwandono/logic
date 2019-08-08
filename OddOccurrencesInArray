@@ -21,5 +21,8 @@ def solution(A):
                     p=1
     return A[len(A)-1]
 
+
+# contoh
 a=[1,2,3,4,5,1,6,5,4,6,3]                
 print(solution(a))   
+#hasilnya 2
