@@ -1,4 +1,7 @@
-#untuk permasalahan yang akan dipecahkan dalam kodingan ini dapat dilihat selengkapnya di https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
+#untuk permasalahan yang akan dipecahkan dalam kodingan ini dapat dilihat selengkapnya di 
+#https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
+
+
 def BiggestBinaryGap(a):
     c = a
     d=[]
@@ -28,4 +31,6 @@ def BiggestBinaryGap(a):
         e=r[len(r)-1]
         return e
 
+#contoh
 print(BiggestBinaryGap(97608))   
+#hasilnya 2
