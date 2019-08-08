@@ -32,4 +32,4 @@ def solution(N):
 faktor24= solution(24)
 print(faktor(24))
 
-#hasilnya 8 , dan memang faktor dari 24 ada sebanyak 8 yaitu --> 1,2,3,4,6,8,12,24
+##hasilnya 8 , dan memang faktor dari 24 ada sebanyak 8 yaitu --> 1,2,3,4,6,8,12,24
